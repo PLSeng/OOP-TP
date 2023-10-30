@@ -29,7 +29,7 @@ public class TD3_3 {
         // The cost is 0.05$ per minute
         float cost = duration_minute*0.05f;
         System.out.printf("Total call duration: %s", S2T(duration));
-        System.out.printf("\nTotal cost of this call: %.2f$", cost);
+        System.out.printf("\nTotal cost of this call: %.3f$", cost);
     }
 
     private static int T2S(int hour, int minute, int second) {
