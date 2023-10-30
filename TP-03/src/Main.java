@@ -21,7 +21,7 @@ public class Main {
 
 
         do {
-            Println("=====================================================================");
+            Println("\n=====================================================================");
             Print("Input your choice: ");
             choice1 = scanner.nextInt();
             switch (choice1) {
