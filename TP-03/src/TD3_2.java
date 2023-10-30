@@ -12,6 +12,5 @@ public class TD3_2 {
         int second = scanner.nextInt();
         System.out.print("\n\n");
         System.out.printf("Number of seconds = %d x 3600 + %d x 60 + %d = %d", hour, minute, second, (hour*3600+minute*60+second));
-        scanner.close();
     }
 }

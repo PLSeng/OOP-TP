@@ -9,6 +9,5 @@ public class TD3_1 {
         System.out.print("Input the number of seconds: ");
         int second = scanner.nextInt();
         System.out.printf("Time corresponding to %d seconds is %d:%d:%d.", second, (second/3600), ((second%3600)/60), (second%60));
-        scanner.close();
     }
 }

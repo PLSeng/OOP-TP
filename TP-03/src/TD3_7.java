@@ -8,7 +8,6 @@ public class TD3_7 {
         String text = scanner.nextLine();
         System.out.print("Enter the letter to find in words: ");
         String letter = scanner.nextLine();
-        scanner.close();
 
         // List of words that contain the letter
         String[] words = text.split("[\\s\\p{Punct}]+");

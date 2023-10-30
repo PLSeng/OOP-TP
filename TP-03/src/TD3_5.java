@@ -16,6 +16,5 @@ public class TD3_5 {
         TD3_3 Ex3 = new TD3_3();
         String duration_time = Ex3.S2T((int)duration);
         System.out.printf("Travelling Duration = %s", duration_time);
-        scanner.close();
     }
 }

@@ -20,7 +20,6 @@ public class TD3_3 {
         System.out.print("Please Input End Seconds: ");
         int end_second = scanner.nextInt();
         System.out.println("\n\n");
-        scanner.close();
 
         int start_time = T2S(start_hour, start_minute, start_second);
         int end_time = T2S(end_hour, end_minute, end_second);

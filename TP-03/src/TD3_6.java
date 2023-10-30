@@ -16,7 +16,6 @@ public class TD3_6 {
 
         int digit_frac = String.valueOf(number1).length() - digit_int - 1;
 
-        scanner.close();
 
         System.out.printf("Number of digits in integer part = %d\n", digit_int);
         System.out.printf("Number of digits in fractional part = %d\n", digit_frac);
