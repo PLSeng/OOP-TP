@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to TP-04.");
-        int choice = 1;
+        int choice;
         java.util.Scanner sc = new java.util.Scanner(System.in);
         do {
             System.out.println("==================================================");
@@ -20,7 +20,7 @@ public class Main {
                     System.out.println("Goodbye!");
                     break;
                 case 1:
-                    Ex1_Prime_number.run();
+                    Ex1_Prime_number Ex1 = new Ex1_Prime_number();
                     break;
                 case 2:
                     Ex2_Lucky_number.run();
