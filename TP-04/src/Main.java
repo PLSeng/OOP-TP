@@ -48,5 +48,6 @@ public class Main {
 
         }while (choice != 0);
         System.out.println("==================================================");
+        sc.close();
     }
 }
