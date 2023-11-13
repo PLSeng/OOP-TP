@@ -20,7 +20,7 @@ public class Main {
                     System.out.println("Goodbye!");
                     break;
                 case 1:
-                    Ex1_Prime_number Ex1 = new Ex1_Prime_number();
+                    new Ex1_Prime_number();
                     break;
                 case 2:
                     Ex2_Lucky_number.run();
