@@ -8,6 +8,11 @@ public class Ex1_Circle {
         this.point = point;
     }
 
+    public void printInfo(){
+        System.out.println("Radius: " + (Math.round(radius()*100))/100.0);
+        System.out.println("Area: " + (Math.round(area()*100))/100.0);
+        System.out.println("Circumference: " + (Math.round(circumference()*100))/100.0);
+    }
 
 
     double radius() {
