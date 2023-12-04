@@ -25,7 +25,13 @@ public class BankAccount {
     }
 
     public void deposit(double amount) {
-        _balance += amount;
+        if (amount > 0) {
+            _balance += amount;
+        }else{
+            System.out.println("==============================================================================");
+            System.out.println("You cannot deposit a negative amount.");
+            System.out.println("==============================================================================");
+        }
     }
 
     public void withdraw(double amount) {
