@@ -26,7 +26,11 @@ public class Main {
                     String to = scanner.nextLine();
                     System.out.print("Enter SMS content: ");
                     String content = scanner.nextLine();
-                    smsList.addSMS(new SMS(from, to, content));
+                    if (content == null || content.length() == 0) {
+                        smsList.addSMS(new SMS(from, to));
+                    } else {
+                        smsList.addSMS(new SMS(from, to, content));
+                    }
                     break;
                 case 2:
                     System.out.print("Enter SMS index: ");
