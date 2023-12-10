@@ -1,8 +1,10 @@
 import java.util.Scanner;
 
 public class Exercise2 {
+    Scanner scanner = new Scanner(System.in);
+    Ex2_Student_Service student = new Ex2_Student_Service();
     int choice;
-    public Exercise2(Ex2_Student_Service student, Scanner scanner){
+    public Exercise2(){
         do{
             System.out.println("1. Add student");
             System.out.println("2. Remove student by name");

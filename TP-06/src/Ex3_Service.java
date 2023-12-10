@@ -104,7 +104,7 @@ public class Ex3_Service {
             for (int i = 0; i < PCs.size(); i++) {
                 if (PCs.get(i).getCondition()) {
                     System.out.println("ID: " + PCs.get(i).getID());
-                    System.out.println("Condition: Good");
+                    System.out.println("Condition: Damaged");
                 }
                 System.out.println("--------------------------");
             }
