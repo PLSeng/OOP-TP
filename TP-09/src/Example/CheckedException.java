@@ -1,3 +1,5 @@
+package Example;
+
 import java.io.*;
 
 public class CheckedException {
