@@ -34,8 +34,9 @@ public class StudentService {
                 oos.write(student.toString());
                 oos.newLine();
             }
-        }catch (IOException e){
-            System.out.println(e);
+            oos.close();
+        }catch (Exception e){
+            e.getStackTrace();
         }
     }
 
