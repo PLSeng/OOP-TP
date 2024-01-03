@@ -1,10 +1,10 @@
 public class VehicleType {
-    private int id; // Auto-incremented in the database
+    private int id;
     private String name;
 
-    // Constructor, assume name is validated externally
-    public VehicleType(String name) {
+    public VehicleType(int id, String name) {
         this.name = name;
+        this.id = id;
     }
 
     // Getters and setters

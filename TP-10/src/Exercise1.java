@@ -1,5 +1,6 @@
 import java.sql.*;
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class Exercise1 {
     // Database configuration
@@ -13,6 +14,8 @@ public class Exercise1 {
     private int yearOfCreation;
     private double price;
     private Date dateOfAvailability;
+
+    Scanner scanner = new Scanner(System.in);
 
     // Constructor
     public Exercise1(String vehicleNumber, String vehicleType, int yearOfCreation, double price, Date dateOfAvailability) throws IllegalArgumentException {
@@ -39,6 +42,30 @@ public class Exercise1 {
         this.yearOfCreation = yearOfCreation;
         this.price = price;
         this.dateOfAvailability = dateOfAvailability;
+    }
+
+    public Exercise1() {
+        // initialise database connection and table
+        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+             Statement stmt = conn.createStatement()) {
+            // call table
+            String sql = "CREATE TABLE IF NOT EXISTS Vehicle (" +
+                    "vehicle_number VARCHAR(10) NOT NULL PRIMARY KEY," +
+                    "vehicle_type_id INT NOT NULL," +
+                    "year_of_creation INT NOT NULL," +
+                    "price DOUBLE NOT NULL," +
+                    "date_of_availability DATE NOT NULL," +
+                    "FOREIGN KEY (vehicle_type_id) REFERENCES VehicleType(id))" +
+                    "CREATE TABLE IF NOT EXISTS VehicleType (" +
+                    "id INT NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                    "name VARCHAR(255) NOT NULL)";
+
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            System.out.println("An SQL error occurred: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("A general error occurred: " + e.getMessage());
+        }
     }
 
     // Getters and setters
@@ -135,45 +162,54 @@ public class Exercise1 {
     }
 
     // Method to remove a vehicle
-    public void removeVehicle(String vehicleNumber) throws SQLException {
+    public boolean removeVehicle(String vehicleNumber) {
+        int rowsAffected = 0;
         String sql = "DELETE FROM Vehicle WHERE vehicle_number = ?";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, vehicleNumber);
-            pstmt.executeUpdate();
+            rowsAffected = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+        return rowsAffected > 0;
     }
 
+
     // Method to update a vehicle
-    public void updateVehicle(String vehicleNumber) throws SQLException {
-        String sql = "UPDATE Vehicle SET vehicle_type = ?, year_of_creation = ?, price = ?, date_of_availability = ? WHERE vehicle_number = ?";
+    public boolean updateVehicle(String vehicleNumber) throws SQLException {
+        int rowsAffected = 0;
+        String sql = "UPDATE Vehicle SET vehicle_type_id = ?, year_of_creation = ?, price = ?, date_of_availability = ? WHERE vehicle_number = ?";
+
+        System.out.println("ID of vehicle type:");
+        Exercise2.listVehicleTypes();
+        System.out.print("Enter vehicle type: ");
+        String vehicleType = scanner.nextLine();
+        System.out.print("Enter year of creation: ");
+        int yearOfCreation = scanner.nextInt();
+        System.out.print("Enter price: ");
+        double price = scanner.nextDouble();
+        System.out.print("Enter date of availability (yyyy-mm-dd): ");
+        String dateStr = scanner.next();
+        Date dateOfAvailability = Date.valueOf(dateStr); // Assumes the date is entered in the format yyyy-mm-dd
 
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, this.vehicleType);
-            pstmt.setInt(2, this.yearOfCreation);
-            pstmt.setDouble(3, this.price);
-            pstmt.setDate(4, this.dateOfAvailability);
-            pstmt.setString(5, vehicleNumber);
+            pstmt.setString(1, vehicleType);
+            pstmt.setInt(2, yearOfCreation);
+            pstmt.setDouble(3, price);
+            pstmt.setDate(4, dateOfAvailability);
+            pstmt.setString(5,  vehicleNumber);
 
-            pstmt.executeUpdate();
-        }
-    }
-
-    // Main method for demonstration purposes
-    public static void main(String[] args) {
-        try {
-            // Example usage
-            Exercise1 vehicle = new Exercise1("ABC123", "Car", 2020, 19999.99, new Date(Calendar.getInstance().getTimeInMillis()));
-            vehicle.addVehicle();
-            vehicle.listVehicles();
-            vehicle.updateVehicle("ABC123");
-            vehicle.removeVehicle("ABC123");
-        } catch (IllegalArgumentException | SQLException e) {
+            rowsAffected = pstmt.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+        return rowsAffected > 0;
     }
 }

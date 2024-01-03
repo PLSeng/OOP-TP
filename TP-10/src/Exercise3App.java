@@ -1,12 +1,13 @@
 import java.sql.Date;
 import java.util.Scanner;
 
-public class Exercise1App {
+public class Exercise3App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int choice;
         Exercise1 vehicle = new Exercise1();
+        Exercise2 vehicleTypeManager = new Exercise2();
 
         do {
             System.out.println("Vehicle Management System");
@@ -14,11 +15,15 @@ public class Exercise1App {
             System.out.println("2. List Vehicles");
             System.out.println("3. Update Vehicle");
             System.out.println("4. Remove Vehicle");
+            System.out.println("-----Exercise 2-----");
+            System.out.println("5. Add Vehicle Type");
+            System.out.println("6. List Vehicle Types");
+            System.out.println("7. Remove Vehicle Type");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
 
             choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline left-over
+            scanner.nextLine();
 
             try {
                 switch (choice) {
@@ -67,6 +72,27 @@ public class Exercise1App {
                         } else {
                             System.out.println("Vehicle number not found or remove failed.");
                         }
+                        break;
+                    case 5:
+                        System.out.print("Enter vehicle type ID: ");
+                        int typeId = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.print("Enter vehicle type name: ");
+                        String typeName = scanner.nextLine();
+                        vehicleTypeManager.addVehicleType(new VehicleType(typeId, typeName));
+                        System.out.println("Vehicle type added successfully.");
+                        break;
+                    case 6:
+                        Exercise2.listVehicleTypes();
+                        break;
+                    case 7:
+                        System.out.print("Enter vehicle type ID to remove: ");
+                        int typeId1 = scanner.nextInt();
+                        vehicleTypeManager.deleteVehicleType(typeId1);
+                        System.out.println("Vehicle type removed successfully.");
+                        break;
+                    case 8:
+                        
                         break;
                     case 0:
                         System.out.println("Exiting...");
