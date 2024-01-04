@@ -9,16 +9,19 @@ public class Exercise3App {
         Exercise1 vehicle = new Exercise1();
         Exercise2 vehicleTypeManager = new Exercise2();
 
+        System.out.println("Please add a vehicle type first to avoid any errors.");
+
         do {
             System.out.println("Vehicle Management System");
             System.out.println("1. Add Vehicle");
             System.out.println("2. List Vehicles");
             System.out.println("3. Update Vehicle");
             System.out.println("4. Remove Vehicle");
-            System.out.println("-----Exercise 2-----");
             System.out.println("5. Add Vehicle Type");
             System.out.println("6. List Vehicle Types");
             System.out.println("7. Remove Vehicle Type");
+            System.out.println("8. Sell Vehicle");
+            System.out.println("9. List All Sold Vehicles");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
 
@@ -40,7 +43,7 @@ public class Exercise3App {
                         double price = scanner.nextDouble();
                         System.out.print("Enter date of availability (yyyy-mm-dd): ");
                         String dateStr = scanner.next();
-                        Date dateOfAvailability = Date.valueOf(dateStr); // Assumes the date is entered in the format yyyy-mm-dd
+                        Date dateOfAvailability = Date.valueOf(dateStr);
 
                         vehicle = new Exercise1(vehicleNumber, vehicleType, yearOfCreation, price, dateOfAvailability);
                         vehicle.addVehicle();
@@ -92,7 +95,14 @@ public class Exercise3App {
                         System.out.println("Vehicle type removed successfully.");
                         break;
                     case 8:
-                        
+                        System.out.print("Enter vehicle number to sell: ");
+                        String vehicleNumberToSell = scanner.nextLine();
+                        System.out.print("Enter customer name: ");
+                        String customerName = scanner.nextLine();
+                        Exercise3.sellVehicle(vehicleNumberToSell, customerName);
+                        break;
+                    case 9:
+                        Exercise3.listAllSoldVehicle();
                         break;
                     case 0:
                         System.out.println("Exiting...");
@@ -103,7 +113,7 @@ public class Exercise3App {
             } catch (Exception e) {
                 System.out.println("An error occurred: " + e.getMessage());
             }
-            System.out.println(); // Print a blank line before next iteration
+            System.out.println();
         } while (choice != 0);
 
         scanner.close();

@@ -1,12 +1,10 @@
 import java.sql.*;
 
 public class Exercise2 {
-    // Database configuration
     private static final String DB_URL = "jdbc:mysql://localhost:3306/vehicle_tp_10";
     private static final String USER = "root";
     private static final String PASS = "Lim078927401";
 
-    // Method to add a new vehicle type
     public void addVehicleType(VehicleType vehicleType) throws SQLException {
         String sql = "INSERT INTO VehicleType (id, name) VALUES (?, ?)";
 
@@ -19,7 +17,6 @@ public class Exercise2 {
         }
     }
 
-    // Method to list all vehicle types
     public static void listVehicleTypes() throws SQLException {
         String sql = "SELECT * FROM VehicleType";
 
@@ -33,7 +30,6 @@ public class Exercise2 {
         }
     }
 
-    // Method to delete a vehicle type by ID
     public void deleteVehicleType(int id) throws SQLException {
         String sql = "DELETE FROM VehicleType WHERE id = ?";
 

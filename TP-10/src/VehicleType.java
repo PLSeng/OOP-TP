@@ -3,11 +3,9 @@ public class VehicleType {
     private String name;
 
     public VehicleType(int id, String name) {
-        this.name = name;
         this.id = id;
+        this.name = name;
     }
-
-    // Getters and setters
 
     public int getId() {
         return id;

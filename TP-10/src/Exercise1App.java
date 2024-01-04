@@ -18,7 +18,7 @@ public class Exercise1App {
             System.out.print("Enter your choice: ");
 
             choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline left-over
+            scanner.nextLine();
 
             try {
                 switch (choice) {
@@ -77,7 +77,7 @@ public class Exercise1App {
             } catch (Exception e) {
                 System.out.println("An error occurred: " + e.getMessage());
             }
-            System.out.println(); // Print a blank line before next iteration
+            System.out.println();
         } while (choice != 0);
 
         scanner.close();
